@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Body styling */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f2f5, #c3cfe2);
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        /* Main container */
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        /* Heading */
+        h1 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        /* Image styling */
+        .result-image {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+            margin: 20px 0;
+        }
+
+        /* Button styling */
+        .btn {
+            display: inline-block;
+            margin: 15px;
+            padding: 12px 25px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        /* Message styling */
+        .fraud {
+            color: #e74c3c;
+        }
+
+        .not-fraud {
+            color: #27ae60;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Container -->
+    <div class="container">
+        <h1>Prediction Result</h1>
+
+        <!-- Dynamic Message and Image based on Prediction -->
+        <!-- Assume {{ prediction }} is 1 for fraud, 0 for not fraud -->
+        {% if prediction == 1 %}
+            <p class="fraud">🚨 Fraud Detected!</p>
+            <img src="fraud.png" alt="Fraud Detected" class="result-image">
+        {% else %}
+            <p class="not-fraud">✅ No Fraud Detected</p>
+            <img src="not_fraud.png" alt="Not Fraud Detected" class="result-image">
+        {% endif %}
+
+        <!-- Navigation Buttons -->
+        <a href="/" class="btn">Go to Home</a>
+        <a href="/predict" class="btn">New Prediction</a>
+    </div>
+
+</body>
+</html>
