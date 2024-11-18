@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prediction Result</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      color: white;
+      animation: none; /* Default - overridden dynamically */
+    }
+
+    /* Red Blinking Background for Fraud */
+    @keyframes blinkRed {
+      0%, 100% {
+        background-color: red;
+      }
+      50% {
+        background-color: darkred;
+      }
+    }
+
+    /* Green Blinking Background for No Fraud */
+    @keyframes blinkGreen {
+      0%, 100% {
+        background-color: green;
+      }
+      50% {
+        background-color: darkgreen;
+      }
+    }
+
+    h1 {
+      font-size: 3rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    p {
+      font-size: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      margin: 15px;
+      padding: 12px 25px;
+      font-size: 14px;
+      font-weight: bold;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    /* Red button for fraud */
+    .btn-fraud {
+      background-color: red;
+    }
+
+    /* Green button for no fraud */
+    .btn-no-fraud {
+      background-color: green;
+    }
+
+    /* Bottom Message */
+    .bottom-message {
+      position: absolute;
+      bottom: 30px;
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+    }
+  </style>
+</head>
+<body class="{% if pred == 1 %}fraud{% else %}not-fraud{% endif %}">
+
+  <!-- Main Container -->
+  <div>
+    <h1>
+      {% if pred == 1 %}
+        🚨 Fraud Detected! 🚨
+      {% else %}
+        ✅ No Fraud Detected
+      {% endif %}
+    </h1>
+    <p>
+      {% if pred == 1 %}
+        Please review the Claim immediately.
+      {% else %}
+        Claim is safe and verified.
+      {% endif %}
+    </p>
+
+    <!-- Navigation Buttons -->
+    <a href="/" class="btn {% if pred == 1 %}btn-fraud{% else %}btn-no-fraud{% endif %}">Go to Home</a>
+    <a href="/predict" class="btn {% if pred == 1 %}btn-fraud{% else %}btn-no-fraud{% endif %}">New Prediction</a>
+  </div>
+
+  <!-- Bottom Message -->
+  <div class="bottom-message">
+    {% if pred == 1 %}
+      Please check the claim immediately.
+    {% else %}
+      Everything looks good with this claim.
+    {% endif %}
+  </div>
+
+  <!-- Apply Fraud Animation for Body -->
+  <script>
+    const isFraud = {{ pred | tojson }};
+    
+    // Apply animation based on prediction
+    document.body.style.animation = isFraud ? "blinkRed 1s infinite" : "blinkGreen 1s infinite";
+  </script>
+</body>
+</html>
