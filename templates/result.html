@@ -59,7 +59,7 @@
             border: none;
             border-radius: 5px;
             text-decoration: none;
-            font-size: 10px;
+            font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s ease;
@@ -86,13 +86,12 @@
         <h1>Prediction Result</h1>
 
         <!-- Dynamic Message and Image based on Prediction -->
-        <!-- Assume {{ prediction }} is 1 for fraud, 0 for not fraud -->
-        {% if prediction == 1 %}
+        {% if pred == 1 %}
             <p class="fraud">🚨 Fraud Detected!</p>
-            <img src="fraud.png" alt="Fraud Detected" class="result-image">
+            <img src="https://cdn.pixabay.com/photo/2014/09/28/10/35/road-sign-464641_1280.jpg" alt="Fraud Detected" class="result-image" height="200" width="200">
         {% else %}
             <p class="not-fraud">✅ No Fraud Detected</p>
-            <img src="not_fraud.png" alt="Not Fraud Detected" class="result-image">
+            <img src="https://www.shutterstock.com/shutterstock/photos/392308426/display_1500/stock-vector-no-fraud-sign-392308426.jpg" alt="Not Fraud Detected" class="result-image">
         {% endif %}
 
         <!-- Navigation Buttons -->
