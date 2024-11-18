@@ -25,7 +25,7 @@ def predict():
         vehicle_claim = float(request.form.get('vehicle_claim'))
 
         pred = best_model.predict([[incident_severity,authorities_contacted,insured_hobbies,float(property_claim),float(total_claim_amount),float(vehicle_claim)]])
-        return render_template('result.html',pred = int(round(pred[0])))
+        return render_template('result1.html',pred = int(round(pred[0])))
    
    else:
        return render_template('predict.html')
